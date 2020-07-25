@@ -1,0 +1,9 @@
+.outerborder {
+  top: 144px;
+  left: 385px;
+  width: 480px;
+  height: 480px;
+  border: 2px dashed #ffffff;
+  border-radius: 46px;
+  opacity: 0.11;
+}
