@@ -4,8 +4,8 @@ import {
 
 } from '../gameSlice';
 import styles from './Coin.module.css';
-import { ReactComponent as CoinX } from './../../../resources/svgs/coinx.svg'
-import { ReactComponent as CoinO } from './../../../resources/svgs/coino.svg'
+import { PlayerCoin } from '../utils/PlayerCoin';
+
 
 interface ICoinProps {
   i: number;
@@ -14,22 +14,13 @@ interface ICoinProps {
   isWin: boolean;
 }
 
-export const coinMap: { [key in number]: ReactElement } = {
-  1: <CoinX />,
-  2: <CoinO />
-}
 
 
 export const Coin: React.FC<ICoinProps> = (props) => {
-
-  let displayCoin = coinMap[props.player]
-  if (displayCoin == null && props.player > 0) {
-    displayCoin = <span>{props.player}</span>
-  }
-
+  const { player } = props;
   return (
     <div className={`${styles.placeholder} ${props.isWin ? styles.win : styles.normal}`}>
-      {displayCoin}
+      <PlayerCoin player={player} />
     </div>
   );
 }

@@ -17,7 +17,7 @@ export const updateMoveInGame = (state: GameState, move: IMovePosition) => {
     colStreak.push(move);
     if (colStreak.length >= MinWinCoinsInStreak) {
         updateWinStreakInBoard(boardState, colStreak);
-        updatePlayerState(playerStates[player])
+        updatePlayerState(playerStates, player);
 
     }
 
@@ -28,6 +28,7 @@ export const updateMoveInGame = (state: GameState, move: IMovePosition) => {
     rowStreak.push(move);
     if (rowStreak.length >= MinWinCoinsInStreak) {
         updateWinStreakInBoard(boardState, rowStreak);
+        updatePlayerState(playerStates, player);
     }
 
     // check diagonal
@@ -37,6 +38,7 @@ export const updateMoveInGame = (state: GameState, move: IMovePosition) => {
     diagonalStreak.push(move);
     if (diagonalStreak.length >= MinWinCoinsInStreak) {
         updateWinStreakInBoard(boardState, diagonalStreak);
+        updatePlayerState(playerStates, player);
     }
 
     // check anti-diagonal
@@ -46,6 +48,7 @@ export const updateMoveInGame = (state: GameState, move: IMovePosition) => {
     antiDiagonalStreak.push(move);
     if (antiDiagonalStreak.length >= MinWinCoinsInStreak) {
         updateWinStreakInBoard(boardState, antiDiagonalStreak);
+        updatePlayerState(playerStates, player);
     }
 
     if (state.moveCount === BoardColumns * BoardRows) {
@@ -84,10 +87,16 @@ const updateWinStreakInBoard = (board: CoinState[][], coinStreak: IMovePosition[
     coinStreak.map(c => board[c.i][c.j].isWinCoin = true);
 }
 
-const updatePlayerState = (playerState: PlayerState) => {
+const updatePlayerState = (playerStates: PlayerState[], player: number) => {
+    const playerState = playerStates[player];
     playerState.streaks = playerState.streaks + 1;
     if (playerState.streaks >= NumOfStreaksToWin) {
         playerState.currentStatus = RoundStatus.Win
         playerState.wins = playerState.wins + 1;
+        for (let i = 0; i < playerStates.length; i++) {
+            if (i === player)
+                continue
+            playerStates[i].currentStatus = RoundStatus.End;
+        }
     }
 }

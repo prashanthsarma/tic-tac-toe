@@ -1,0 +1,14 @@
+.outerBorder {
+  border: 2px dashed var(--primary-fg-11);
+  border-radius: 2.875rem;
+  padding: 1.25rem;
+  /* opacity: 0.11;  */
+}
+
+.innerBox {
+  position: relative;
+  background-color: var(--secondary-bg-43);
+  box-shadow: 0px 3px 6px #000000DD;
+  border-radius: 2.875rem;
+  /* opacity: 0.43; */
+}

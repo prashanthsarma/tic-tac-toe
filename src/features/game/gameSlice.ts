@@ -27,7 +27,7 @@ const initBoardState = () => {
 const initRoundState = () => {
   const initial: PlayerState[] = [];
   for (let i = 0; i <= MaxPlayers; i++) {
-    initial.push({ currentStatus: RoundStatus.Continue, streaks: 0, wins: 0 })
+    initial.push({ currentStatus: RoundStatus.Continue, streaks: 0, wins: 2, name:'Ram' })
   }
   return initial;
 }
@@ -78,6 +78,7 @@ export const incrementAsync = (amount: number): AppThunk => dispatch => {
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectBoardState = (state: RootState) => state.game.boardState;
-export const selectCurrentPlayer = (state: RootState) => state.game.boardState;
+export const selectPlayerState = (state: RootState) => state.game.playerStates;
+export const selectCurrentPlayer = (state: RootState) => state.game.currentPlayer;
 
 export default gameSlice.reducer;

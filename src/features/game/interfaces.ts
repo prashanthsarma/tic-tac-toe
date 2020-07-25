@@ -19,6 +19,7 @@ export interface PlayerState {
     currentStatus: RoundStatus;
     streaks: number;
     wins: number;
+    name: string;
 }
 
 export interface GameState {

@@ -38,6 +38,19 @@
   }
 }
 
+:root{
+--primary-bg: #0B233F;
+--secondary-bg: #253952;
+--primary-fg: #FFFFFF;
+--secondary-fg: #FB9E01;
+
+--primary-fg-11: #FFFFFF1C;
+--secondary-bg-43: #2539526E;
+--primary-bg-43: #0B233F6E;
+}
+
+
 body {
-  background: black;
+  background: var(--primary-bg);
+  color: var(--primary-fg);
 }

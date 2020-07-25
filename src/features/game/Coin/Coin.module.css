@@ -1,27 +1,17 @@
-.border-right {
-  top: 144px;
-  left: 385px;
-  width: 480px;
-  height: 480px;
-  border-: 2px dashed #ffffff;
-  border-radius: 46px;
-  opacity: 0.11;
-}
-
 .normal ellipse {
-  stroke: #ffffff;
+  stroke: var(--primary-fg);
 }
 
 .win ellipse {
-  stroke: rgb(126, 202, 26);
+  stroke: var(--secondary-fg);
 }
 
 .normal path {
-  fill: #ffffff;
+  fill: var(--primary-fg);
 }
 
 .win path {
-  fill: rgb(126, 202, 26);
+  fill: var(--secondary-fg);
 }
 
 .placeholder {
