@@ -11,17 +11,21 @@ export const Board = () => {
   const dispatch = useDispatch();
   // const [incrementAmount, setIncrementAmount] = useState('2');
 
-  const getRow = ( row: number[], i: number) => {
+  const getRow = (row: number[], i: number) => {
     return (
       <tr>
-        {row.map((c, j) => (<td key={`${i},${j}`}><Coin i={i} j={j} p={c}/></td>))}
+        {row.map((c, j) => (
+          <td key={`${i},${j}`}>
+            <Coin i={i} j={j} player={c} />
+          </td>
+        ))}
       </tr>
     )
   }
-  
+
   const rows = boardState.map((row, i) => getRow(row, i));
   return (
-    <div className={styles.outerBorder}>
+    <div className={styles.outerborder}>
       <table>
         {rows}
       </table>

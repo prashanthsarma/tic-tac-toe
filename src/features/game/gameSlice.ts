@@ -16,6 +16,7 @@ interface IAddCoin {
 const initBoardState = () => {
   const initial: number[][] = [];
   for (let i = 0; i < BoardRows; i++) {
+    initial[i] = [];
     for (let j = 0; j < BoardColumns; j++) {
       initial[i][j] = 0;
     }
