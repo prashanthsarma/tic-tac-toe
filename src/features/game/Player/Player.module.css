@@ -1,5 +1,5 @@
 .playerDiv {
-  position:relative;
+  position: relative;
   height: 137px;
   width: 123px;
   background-color: var(--secondary-bg);
@@ -43,51 +43,54 @@
 
 .playerName {
   font-size: 18px;
+  max-height: 40px;
+  max-width: 103px;
+  overflow: hidden;
 }
 
 .playerRoundWins {
-    position: absolute;
-    display:flex;
-    width: 123px;
-    justify-content: space-between;
-    bottom: -25px;
-    left: 0px;
-    height: 10px;
+  position: absolute;
+  display: flex;
+  width: 123px;
+  justify-content: space-between;
+  bottom: -25px;
+  left: 0px;
+  height: 10px;
 }
 
 .playerRoundWins svg {
-    stroke-width: 0;
-    width: 10px;
-    height: 10px;
+  stroke-width: 0;
+  width: 10px;
+  height: 10px;
 }
-.winEllipse{
-    fill: var(--primary-fg);
-}
-
-.emptyEllipse{
-    fill: var(--secondary-bg);
+.winEllipse {
+  fill: var(--primary-fg);
 }
 
-.playerRoundStatus{
-    position: absolute;
-    display:flex;
-    width: 123px;
-    justify-content: space-around;
-    top: -50px;
-    left: 0px;
+.emptyEllipse {
+  fill: var(--secondary-bg);
+}
+
+.playerRoundStatus {
+  position: absolute;
+  display: flex;
+  width: 123px;
+  justify-content: space-around;
+  top: -50px;
+  left: 0px;
 }
 
 .playerTurn {
-    color: var(--secondary-fg);
-    font-size: 21px;
+  color: var(--secondary-fg);
+  font-size: 21px;
 }
 
 .playerDraw {
-    color: var(--primary-fg);
-    font-size: 31px;
+  color: var(--primary-fg);
+  font-size: 31px;
 }
 
 .playerWin {
-    color: var(--secondary-fg);
-    font-size: 31px;
+  color: var(--secondary-fg);
+  font-size: 31px;
 }

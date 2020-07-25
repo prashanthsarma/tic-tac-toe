@@ -5,12 +5,16 @@ import {
   makeMove,
 } from '../gameSlice';
 import { Coin } from '../Coin';
-import { CoinState } from '../interfaces';
+import { CoinState, RoundStatus } from '../interfaces';
 import { CellWidth } from '../constants';
 import { Lines } from './Lines';
 import styles from './Board.module.css';
 
-export const Board = () => {
+interface IBoardProps {
+  status: RoundStatus
+}
+
+export const Board: React.FC<IBoardProps> = (props) => {
   const boardState = useSelector(selectBoardState);
   const dispatch = useDispatch();
   // const [incrementAmount, setIncrementAmount] = useState('2');
@@ -31,15 +35,25 @@ export const Board = () => {
                   <Coin i={i} j={j} player={c.player} isWin={c.isWinCoin} />
                 </div>
                 :
-                <div key={`${i},${j}`}
-                  style={cellStyle}
-                  className={styles.coinContainer}
-                  onClick={() => dispatch(makeMove({ move: { i, j } }))}>
-                </div>
+                <>{
+                  props.status === RoundStatus.Continue ?
+                    < div key={`${i},${j}`}
+                      style={cellStyle}
+                      className={styles.coinContainer}
+                      onClick={() => dispatch(makeMove({ move: { i, j } }))}>
+                    </div>
+                    : < div key={`${i},${j}`}
+                      style={cellStyle}
+                      className={styles.coinContainer}
+                    >
+                    </div>
+                }
+                </>
             }
           </>
-        ))}
-      </div>
+        ))
+        }
+      </div >
 
     )
   }

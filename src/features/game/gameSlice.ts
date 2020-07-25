@@ -27,7 +27,7 @@ const initBoardState = () => {
 const initRoundState = () => {
   const initial: PlayerState[] = [];
   for (let i = 0; i <= MaxPlayers; i++) {
-    initial.push({ currentStatus: RoundStatus.Continue, streaks: 0, wins: 2, name:'Ram' })
+    initial.push({ currentStatus: RoundStatus.Continue, streaks: 0, wins: 2, name:'RamprashantAnanthramanSarma' })
   }
   return initial;
 }
@@ -80,5 +80,6 @@ export const incrementAsync = (amount: number): AppThunk => dispatch => {
 export const selectBoardState = (state: RootState) => state.game.boardState;
 export const selectPlayerState = (state: RootState) => state.game.playerStates;
 export const selectCurrentPlayer = (state: RootState) => state.game.currentPlayer;
+export const selectCommonStatus = (state: RootState) => state.game.playerStates[0].currentStatus;
 
 export default gameSlice.reducer;
