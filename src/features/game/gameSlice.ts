@@ -1,35 +1,45 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk, RootState } from '../../app/store';
-import { BoardRows, BoardColumns } from './constants';
+import { BoardRows, BoardColumns, MaxPlayers } from './constants';
+import { IMovePosition, CoinState, RoundStatus, GameState, PlayerState } from './interfaces';
+import { updateMoveInGame } from './gameService';
 
-interface CounterState {
-  value: number;
-  boardState: number[][];
-}
 
-interface IAddCoin {
-  i: number;
-  j: number;
-  player: number;
+
+
+
+
+interface IMakeMovePayload {
+  move: IMovePosition;
 }
 
 const initBoardState = () => {
-  const initial: number[][] = [];
+  const initial: CoinState[][] = [];
   for (let i = 0; i < BoardRows; i++) {
     initial[i] = [];
     for (let j = 0; j < BoardColumns; j++) {
-      initial[i][j] = 0;
+      initial[i][j] = { player: 0, isWinCoin: false }; // blank coin
     }
   }
   return initial;
 }
 
-const initialState: CounterState = {
-  value: 0,
+const initRoundState = () => {
+  const initial: PlayerState[] = [];
+  for (let i = 0; i <= MaxPlayers; i++) {
+    initial.push({ currentStatus: RoundStatus.Continue, streaks: 0, wins: 0 })
+  }
+  return initial;
+}
+
+const initialState: GameState = {
   boardState: initBoardState(),
+  playerStates: initRoundState(),
+  currentPlayer: 1,
+  moveCount: 0,
 };
 
-export const counterSlice = createSlice({
+export const gameSlice = createSlice({
   name: 'counter',
   initialState,
   reducers: {
@@ -37,21 +47,22 @@ export const counterSlice = createSlice({
     // doesn't actually mutate the state because it uses the Immer library,
     // which detects changes to a "draft state" and produces a brand new
     // immutable state based off those changes
-    addCoin: (state, action: PayloadAction<IAddCoin>) => {
-      const { i, j, player } = action.payload;
-      state.boardState[i][j] = player;
+    makeMove: (state, action: PayloadAction<IMakeMovePayload>) => {
+      const { move } = action.payload;
+      state = updateMoveInGame(state, move);
+      console.log(state);
     },
     decrement: state => {
-      state.value -= 1;
+      
     },
     // Use the PayloadAction type to declare the contents of `action.payload`
     incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
+      
     },
   },
 });
 
-export const { addCoin, decrement, incrementByAmount } = counterSlice.actions;
+export const { makeMove, decrement, incrementByAmount } = gameSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
@@ -67,5 +78,6 @@ export const incrementAsync = (amount: number): AppThunk => dispatch => {
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectBoardState = (state: RootState) => state.game.boardState;
+export const selectCurrentPlayer = (state: RootState) => state.game.boardState;
 
-export default counterSlice.reducer;
+export default gameSlice.reducer;

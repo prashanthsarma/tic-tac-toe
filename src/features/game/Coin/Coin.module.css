@@ -7,3 +7,25 @@
   border-radius: 46px;
   opacity: 0.11;
 }
+
+.normal ellipse {
+  stroke: #ffffff;
+}
+
+.win ellipse {
+  stroke: rgb(126, 202, 26);
+}
+
+.normal path {
+  fill: #ffffff;
+}
+
+.win path {
+  fill: rgb(126, 202, 26);
+}
+
+.placeholder {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
