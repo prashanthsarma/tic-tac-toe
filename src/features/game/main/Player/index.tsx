@@ -1,10 +1,10 @@
 import React, {  } from 'react';
 import { useSelector } from 'react-redux';
-import { selectPlayerState, selectCurrentPlayer } from '../gameSlice';
+import { selectPlayerState, selectCurrentPlayer } from '../../gameSlice';
 import styles from './Player.module.css';
-import { MaxWins } from '../constants';
-import { RoundStatus } from '../interfaces';
-import { PlayerDetail } from '../utils/PlayerDetail';
+import { MaxWins } from '../../constants';
+import { RoundStatus } from '../../interfaces';
+import { PlayerDetail } from '../../utils/PlayerDetail';
 
 interface IPlayerProps {
   player: number;

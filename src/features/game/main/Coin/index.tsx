@@ -1,10 +1,6 @@
-import React, { useState, ReactElement } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-
-} from '../gameSlice';
+import React from 'react';
 import styles from './Coin.module.css';
-import { PlayerCoin } from '../utils/PlayerCoin';
+import { PlayerCoin } from '../../utils/PlayerCoin';
 
 
 interface ICoinProps {
@@ -13,8 +9,6 @@ interface ICoinProps {
   player: number;
   isWin: boolean;
 }
-
-
 
 export const Coin: React.FC<ICoinProps> = (props) => {
   const { player } = props;

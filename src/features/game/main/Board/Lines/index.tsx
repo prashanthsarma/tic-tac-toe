@@ -1,5 +1,5 @@
 import React from 'react';
-import { BoardRows, CellWidth, BoardColumns } from '../../constants';
+import { BoardRows, CellWidth, BoardColumns } from '../../../constants';
 import styles from './Lines.module.css';
 
 

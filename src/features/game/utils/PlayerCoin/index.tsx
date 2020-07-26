@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
-import { ReactComponent as CoinX } from './../../../resources/svgs/coinx.svg'
-import { ReactComponent as CoinO } from './../../../resources/svgs/coino.svg'
+import { ReactComponent as CoinX } from './../../../../resources/svgs/coinx.svg'
+import { ReactComponent as CoinO } from './../../../../resources/svgs/coino.svg'
 
 
 const coinMap: { [key in number]: ReactElement } = {

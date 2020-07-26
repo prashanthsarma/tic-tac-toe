@@ -1,12 +1,12 @@
-import React, { useState, CSSProperties } from 'react';
+import React, { CSSProperties } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectBoardState,
   makeMove,
-} from '../gameSlice';
+} from '../../gameSlice';
 import { Coin } from '../Coin';
-import { CoinState, RoundStatus } from '../interfaces';
-import { CellWidth } from '../constants';
+import { CoinState, RoundStatus } from '../../interfaces';
+import { CellWidth } from '../../constants';
 import { Lines } from './Lines';
 import styles from './Board.module.css';
 
@@ -24,7 +24,7 @@ export const Board: React.FC<IBoardProps> = (props) => {
 
     return (
       <div className={styles.row}>
-        {row.map((c, j, a) => (
+        {row.map((c, j) => (
           <>
             {
               c.player > 0
@@ -58,7 +58,7 @@ export const Board: React.FC<IBoardProps> = (props) => {
     )
   }
 
-  const rows = boardState.map((row, i, a) => getRow(row, i));
+  const rows = boardState.map((row, i) => getRow(row, i));
 
   return (
     <div className={styles.outerborder}>
