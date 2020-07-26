@@ -1,22 +1,14 @@
-import React, { useState, ReactElement } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, {  } from 'react';
+import { useSelector } from 'react-redux';
 import { selectPlayerState, selectCurrentPlayer } from '../gameSlice';
-import { ReactComponent as CoinX } from './../../../resources/svgs/coinx.svg'
-import { ReactComponent as CoinO } from './../../../resources/svgs/coino.svg'
-import { PlayerCoin } from '../utils/PlayerCoin';
 import styles from './Player.module.css';
 import { MaxWins } from '../constants';
 import { RoundStatus } from '../interfaces';
+import { PlayerDetail } from '../utils/PlayerDetail';
 
 interface IPlayerProps {
   player: number;
 }
-
-export const coinMap: { [key in number]: ReactElement } = {
-  1: <CoinX />,
-  2: <CoinO />
-}
-
 
 export const Player: React.FC<IPlayerProps> = (props) => {
 
@@ -54,11 +46,7 @@ export const Player: React.FC<IPlayerProps> = (props) => {
       <div className={styles.playerRoundStatus}>
         {roundstatus(p.currentStatus, currentPlayer, player)}
       </div>
-      <div className={styles.playerNumberName}>
-        <span className={styles.playerNumber}>{`PLAYER ${player}`}</span>
-        <span className={styles.playerName}>{p.name}</span>
-      </div>
-      <PlayerCoin player={player} />
+      <PlayerDetail player={player} fontStyle={styles.detailFontStyle}/>
       <div className={styles.playerRoundWins}>
         {roundWins}
       </div>

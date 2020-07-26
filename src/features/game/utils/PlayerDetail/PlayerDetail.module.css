@@ -1,0 +1,53 @@
+.playerDetailDiv {
+    height: 100%;
+    width: 100%;
+    background-color: var(--secondary-bg);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto-Medium';
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    padding-bottom: 1.25rem;
+    box-sizing: border-box;
+    border-radius: 24px;
+  }
+  
+  .playerNumberName {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    height: calc(55% - 0.5rem);
+  }
+  
+  .playerDetailDiv .playerCoinContainer {
+    height: 45%;
+  }
+
+  .playerCoinContainer svg{
+    height: 100%;
+    width: 100%;
+  }
+  
+  .playerDetailDiv ellipse {
+    stroke: var(--primary-fg);
+  }
+  
+  .playerDetailDiv path {
+    fill: var(--primary-fg);
+  }
+  
+  .playerNumber {
+    color: var(--secondary-fg);
+    font-size: 61%;
+  }
+  
+  .playerName {
+    font-size: 100%;
+    max-height: 40px;
+    max-width: 103px;
+    overflow: hidden;
+  }
+  
