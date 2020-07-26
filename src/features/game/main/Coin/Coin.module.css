@@ -6,12 +6,22 @@
   stroke: var(--secondary-fg);
 }
 
+@keyframes color {
+  0% {
+    fill: var(--primary-fg);
+  }
+  100% {
+    fill: var(--secondary-fg);
+  }
+}
+
 .normal path {
   fill: var(--primary-fg);
 }
 
 .win path {
-  fill: var(--secondary-fg);
+  animation: color 0.3s alternate-reverse infinite;
+  /* fill: var(--secondary-fg); */
 }
 
 .placeholder {
@@ -20,7 +30,7 @@
   justify-content: center;
 }
 
-.placeholder svg{
-  width:55%;
-  height:55%;
+.placeholder svg {
+  width: 55%;
+  height: 55%;
 }

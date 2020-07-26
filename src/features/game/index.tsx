@@ -5,6 +5,10 @@ import { GameStatus } from './interfaces';
 import { Arena } from './main/Arena';
 import { End } from './End';
 import { Start } from './Start';
+import './styles.css';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { ReactComponent as Logo } from './../../resources/svgs/TicTacToe.svg'
+
 
 export const Game = () => {
 
@@ -14,17 +18,32 @@ export const Game = () => {
   const renderComponent = () => {
     switch (gameStatus) {
       case GameStatus.NotStarted:
-        return <Start />
+        return (
+          <CSSTransition key={'Start'} timeout={500} classNames="item">
+            <Start />
+          </CSSTransition>
+        )
       case GameStatus.InProgress:
-        return <Arena />
+        return (
+          <CSSTransition key={'Arena'} timeout={500} classNames="item">
+            <Arena />
+          </CSSTransition>
+        );
       case GameStatus.End:
-        return <End />
+        return (
+          <CSSTransition key={'End'} timeout={500} classNames="item">
+            <End />
+          </CSSTransition>
+        )
     }
   }
 
   return (
     <>
-      {renderComponent()}
+      <Logo className="logo" />
+      <TransitionGroup>
+        {renderComponent()}
+      </TransitionGroup>
     </>
-  );
+  )
 }

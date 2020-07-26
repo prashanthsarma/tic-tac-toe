@@ -21,7 +21,7 @@ export const Player: React.FC<IPlayerProps> = (props) => {
   const roundWins = []
   for (let i = 1; i <= MaxWins; i++) {
     roundWins.push(
-      <svg viewBox={`0 0 10 10`} >
+      <svg key={i} viewBox={`0 0 10 10`} className={i <= p.wins ? styles.winSvg : ''}>
         <ellipse className={i <= p.wins ? styles.winEllipse : styles.emptyEllipse}
           cx="5" cy="5" rx="5" ry="5" />
       </svg>

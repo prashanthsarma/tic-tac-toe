@@ -14,8 +14,12 @@ export const PlayerDetail: React.FC<IPlayerProps> = (props) => {
   const { player, fontStyle } = props;
   const playerState = useSelector(selectPlayerState);
   const p = playerState[player];
+  if(p== null){
+    return null;
+  }
 
   const winnerStyle = p.isRoundWin ? styles.winnerBorder : '';
+  console.log(p);
 
   return (
     <div className={`${styles.playerDetailDiv} ${fontStyle} ${winnerStyle}`}>

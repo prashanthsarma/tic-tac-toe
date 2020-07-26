@@ -64,17 +64,17 @@ export const gameSlice = createSlice({
       const { player, property, value } = action.payload;
       state.playerStates[player][property] = value as never;
     },
-    // eslint-disable-next-line no-useless-computed-key
     startGame: state => {
       state.gameStatus = GameStatus.InProgress;
-      console.log("Lets start");
     },
     nextRound: state => {
-      state.currentPlayer = (state.currentPlayer % MaxPlayers) + 1;
-      state.playerStates.forEach(p => p.isRoundWin = false);
-      state.boardState = initBoardState();
-      state.roundStatus = RoundStatus.Continue;
-      state.moveCount = 0;
+      if (state.gameStatus === GameStatus.InProgress) {
+        state.currentPlayer = (state.currentPlayer % MaxPlayers) + 1;
+        state.playerStates.forEach(p => p.isRoundWin = false);
+        state.boardState = initBoardState();
+        state.roundStatus = RoundStatus.Continue;
+        state.moveCount = 0;
+      }
     },
   },
 });

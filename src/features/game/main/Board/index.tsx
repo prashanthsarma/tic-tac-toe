@@ -20,9 +20,9 @@ export const Board: React.FC = () => {
     const cellStyle: CSSProperties = { width: `${CellWidth}px`, height: `${CellWidth}px` }
 
     return (
-      <div className={styles.row}>
+      <div key={`row${i}`}className={styles.row}>
         {row.map((c, j) => (
-          <>
+          <React.Fragment key={`${i},${j}`}>
             {
               c.player > 0
                 ?
@@ -47,7 +47,7 @@ export const Board: React.FC = () => {
                 }
                 </>
             }
-          </>
+          </React.Fragment>
         ))
         }
       </div >

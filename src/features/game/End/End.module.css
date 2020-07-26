@@ -12,6 +12,16 @@
   font-size: 34px;
   font-family: "Poppins";
   margin-bottom: 1rem;
+  animation: playerWinAnim 0.3s alternate-reverse infinite;
+}
+
+@keyframes playerWinAnim {
+  0% {
+    color: var(--primary-fg);
+  }
+  100% {
+    color: var(--secondary-fg);
+  }
 }
 
 .endContainer{

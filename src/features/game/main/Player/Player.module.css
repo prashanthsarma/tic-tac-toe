@@ -5,7 +5,7 @@
 }
 
 .detailFontStyle {
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .playerRoundWins {
@@ -24,12 +24,55 @@
   height: 10px;
   margin-right: 10px;
 }
-.winEllipse {
-  fill: var(--primary-fg);
+
+/* .winSvg {
+  animation: winSvgAnim 0.5s linear forwards;
 }
+
+@keyframes winSvgAnim {
+  0% {
+    width: 10px;
+    height: 10px;
+    margin-left: 0px;
+    margin-right: 10px;
+  }
+  50% {
+    width: 20px;
+    height: 20px;
+    margin-top: -5px;
+    margin-bottom: -5px;
+    margin-left: -5px;
+    margin-right: 5px;
+  }
+  100% {
+    width: 10px;
+    height: 10px;
+    margin-left: 0px;
+    margin-right: 10px;
+  }
+} */
 
 .emptyEllipse {
   fill: var(--secondary-bg);
+}
+
+.winEllipse {
+  animation: winEllipseAnim 1s linear alternate-reverse;
+  animation-iteration-count: 4;
+  fill: var(--primary-fg);
+}
+@keyframes winEllipseAnim {
+  0% {
+    fill: var(--secondary-bg);
+    scale: 1;
+  }
+  50% {
+    scale: 2;
+  }
+  100% {
+    fill: var(--primary-fg);
+    scale: 1;
+  }
 }
 
 .playerRoundStatus {
@@ -51,7 +94,17 @@
   font-size: 31px;
 }
 
+@keyframes playerWinAnim {
+  0% {
+    color: var(--primary-fg);
+  }
+  100% {
+    color: var(--secondary-fg);
+  }
+}
+
 .playerWin {
-  color: var(--secondary-fg);
+  animation: playerWinAnim 0.3s alternate-reverse infinite;
+  /* color: var(--secondary-fg); */
   font-size: 31px;
 }
