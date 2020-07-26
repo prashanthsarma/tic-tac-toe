@@ -14,3 +14,7 @@
   height: 100%;
   position: relative;
 }
+
+.customCursor{
+  cursor: url('../../../../resources/svgs/mouse.svg'), auto;
+}

@@ -21,8 +21,8 @@ export const Arena = () => {
     const onMousemove = (e: MouseEvent) => {
       if (cursorRef == null || cursorRef.current == null)
         return;
-      cursorRef.current!.setAttribute("style", "top: " + (e.pageY - 20) + "px; left: " + (e.pageX - 20) + "px;")
-      if(!cursorUpdate){
+      cursorRef.current!.setAttribute("style", "top: " + (e.pageY-9) + "px; left: " + (e.pageX + 20) + "px;")
+      if (!cursorUpdate) {
         setCursorUpdate(true);
       }
     }
@@ -47,16 +47,16 @@ export const Arena = () => {
 
   const showCursor = status === RoundStatus.Continue && cursorUpdate;
   return (
-    <CentrePageLayout>
-      <div ref={cursorRef} className={`${styles.cursor} ${showCursor ? '' : 'none'}`}>
-        <PlayerCoin player={player} />
-      </div>
+    <CentrePageLayout isCustomCursor>
+        <div ref={cursorRef} className={`${styles.cursor} ${showCursor ? '' : 'none'}`}>
+          <PlayerCoin player={player} />
+        </div>
 
-      <Player player={1} />
-      <CentralPlaceholder>
-        <Board/>
-      </CentralPlaceholder>
-      <Player player={2} />
+        <Player player={1} />
+        <CentralPlaceholder>
+          <Board />
+        </CentralPlaceholder>
+        <Player player={2} />
       {/* <div className={styles.arenaBelowCenter}>another div here</div> */}
     </CentrePageLayout>
   );
