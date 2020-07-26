@@ -1,9 +1,9 @@
 import React, {  } from 'react';
 import { useSelector } from 'react-redux';
-import { selectPlayerState, selectCurrentPlayer } from '../../gameSlice';
+import { selectPlayerState, selectCurrentPlayer, selectRoundStatus } from '../../gameSlice';
 import styles from './Player.module.css';
 import { MaxWins } from '../../constants';
-import { RoundStatus } from '../../interfaces';
+import { RoundStatus, PlayerState } from '../../interfaces';
 import { PlayerDetail } from '../../utils/PlayerDetail';
 
 interface IPlayerProps {
@@ -15,12 +15,13 @@ export const Player: React.FC<IPlayerProps> = (props) => {
   const { player } = props;
   const playerState = useSelector(selectPlayerState);
   const currentPlayer = useSelector(selectCurrentPlayer);
+  const roundstatus = useSelector(selectRoundStatus);
   const p = playerState[player];
 
   const roundWins = []
   for (let i = 1; i <= MaxWins; i++) {
     roundWins.push(
-      <svg viewBox={`0 0 10 10`}>
+      <svg viewBox={`0 0 10 10`} >
         <ellipse className={i <= p.wins ? styles.winEllipse : styles.emptyEllipse}
           cx="5" cy="5" rx="5" ry="5" />
       </svg>
@@ -28,14 +29,12 @@ export const Player: React.FC<IPlayerProps> = (props) => {
   }
 
 
-  const roundstatus = (status: RoundStatus, currentPlayer: number, player: number) => {
+  const showStatus = (status: RoundStatus, playerDetail: PlayerState,currentPlayer: number, player: number) => {
     switch (status) {
-      case RoundStatus.End:
-        return null;
       case RoundStatus.Draw:
         return <span className={styles.playerDraw}>DRAW</span>
       case RoundStatus.Win:
-        return <span className={styles.playerWin}>WINNER</span>
+        return playerDetail.isRoundWin ? <span className={styles.playerWin}>WINNER</span> : null;
       case RoundStatus.Continue:
         return currentPlayer === player ? <span className={styles.playerTurn}>Your Turn</span> : null;
     }
@@ -44,7 +43,7 @@ export const Player: React.FC<IPlayerProps> = (props) => {
   return (
     <div className={styles.playerDiv}>
       <div className={styles.playerRoundStatus}>
-        {roundstatus(p.currentStatus, currentPlayer, player)}
+        {showStatus(roundstatus, p, currentPlayer, player)}
       </div>
       <PlayerDetail player={player} fontStyle={styles.detailFontStyle}/>
       <div className={styles.playerRoundWins}>

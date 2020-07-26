@@ -7,3 +7,5 @@ export const MaxPlayers = 2;
 
 // Used in styles, ideally should use vh or vw to find optimum
 export const CellWidth = 147;
+export const BoardWidth = CellWidth * BoardColumns;
+export const BoardHeight = CellWidth * BoardRows;

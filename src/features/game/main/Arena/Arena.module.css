@@ -1,21 +1,17 @@
-.arena{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height:100vh;
-}
-
-.arenaCenter{
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    align-items: center;
-    height:100%;
-    position: relative
-}
 
 .arenaBelowCenter {
     position: absolute;
     bottom:0px;
+}
+
+.cursor {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    z-index: 1;
+}
+
+.cursor svg {
+    stroke: white;
+    fill: white;
 }

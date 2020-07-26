@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   selectBoardState,
   makeMove,
+  selectRoundStatus,
 } from '../../gameSlice';
 import { Coin } from '../Coin';
 import { CoinState, RoundStatus } from '../../interfaces';
@@ -10,14 +11,10 @@ import { CellWidth } from '../../constants';
 import { Lines } from './Lines';
 import styles from './Board.module.css';
 
-interface IBoardProps {
-  status: RoundStatus
-}
-
-export const Board: React.FC<IBoardProps> = (props) => {
+export const Board: React.FC = () => {
   const boardState = useSelector(selectBoardState);
+  const status = useSelector(selectRoundStatus);
   const dispatch = useDispatch();
-  // const [incrementAmount, setIncrementAmount] = useState('2');
 
   const getRow = (row: CoinState[], i: number,) => {
     const cellStyle: CSSProperties = { width: `${CellWidth}px`, height: `${CellWidth}px` }
@@ -36,7 +33,7 @@ export const Board: React.FC<IBoardProps> = (props) => {
                 </div>
                 :
                 <>{
-                  props.status === RoundStatus.Continue ?
+                  status === RoundStatus.Continue ?
                     < div key={`${i},${j}`}
                       style={cellStyle}
                       className={styles.coinContainer}

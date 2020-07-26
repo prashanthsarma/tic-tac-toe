@@ -1,11 +1,11 @@
 import React from 'react';
-import { Arena } from './features/game/main/Arena';
+import { Game } from './features/game';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-        <Arena />
+      <Game />
     </div>
   );
 }

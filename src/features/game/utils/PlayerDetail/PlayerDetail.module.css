@@ -24,6 +24,7 @@
   justify-content: space-between;
   box-sizing: border-box;
   height: calc(55% - 0.5rem);
+  width:100%;
 }
 
 .playerDetailDiv .playerCoinContainer {
@@ -50,7 +51,7 @@
 
 .playerName {
   font-size: 100%;
-  max-height: 40px;
-  max-width: 103px;
+  max-height: 80%;
+  max-width: 80%;
   overflow: hidden;
 }

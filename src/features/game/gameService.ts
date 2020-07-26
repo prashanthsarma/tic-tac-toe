@@ -1,14 +1,14 @@
-import { IMovePosition, CoinState, GameState, PlayerState, RoundStatus } from "./interfaces";
-import { BoardColumns, MinWinCoinsInStreak, BoardRows, NumOfStreaksToWin, MaxPlayers } from "./constants";
-import { makeMove } from "./gameSlice";
+import { IMovePosition, CoinState, GameState, PlayerState, RoundStatus, GameStatus } from "./interfaces";
+import { BoardColumns, MinWinCoinsInStreak, BoardRows, NumOfStreaksToWin, MaxPlayers, MaxWins } from "./constants";
 
 
 export const updateMoveInGame = (state: GameState, move: IMovePosition) => {
 
     const { boardState, playerStates, currentPlayer: player } = state; // Not making a deep copy
     state.moveCount = state.moveCount + 1;
-    state.currentPlayer = (state.currentPlayer % MaxPlayers) + 1;
     boardState[move.i][move.j].player = player;
+
+    let roundStatus = RoundStatus.Continue;
 
     // check column
     const downStreak = getCoinStreak(boardState, player, move, 0, 1);
@@ -17,8 +17,7 @@ export const updateMoveInGame = (state: GameState, move: IMovePosition) => {
     colStreak.push(move);
     if (colStreak.length >= MinWinCoinsInStreak) {
         updateWinStreakInBoard(boardState, colStreak);
-        updatePlayerState(playerStates, player);
-
+        roundStatus = updatePlayerState(playerStates, player);
     }
 
     // check row
@@ -28,7 +27,7 @@ export const updateMoveInGame = (state: GameState, move: IMovePosition) => {
     rowStreak.push(move);
     if (rowStreak.length >= MinWinCoinsInStreak) {
         updateWinStreakInBoard(boardState, rowStreak);
-        updatePlayerState(playerStates, player);
+        roundStatus = updatePlayerState(playerStates, player);
     }
 
     // check diagonal
@@ -38,7 +37,7 @@ export const updateMoveInGame = (state: GameState, move: IMovePosition) => {
     diagonalStreak.push(move);
     if (diagonalStreak.length >= MinWinCoinsInStreak) {
         updateWinStreakInBoard(boardState, diagonalStreak);
-        updatePlayerState(playerStates, player);
+        roundStatus = updatePlayerState(playerStates, player);
     }
 
     // check anti-diagonal
@@ -48,22 +47,21 @@ export const updateMoveInGame = (state: GameState, move: IMovePosition) => {
     antiDiagonalStreak.push(move);
     if (antiDiagonalStreak.length >= MinWinCoinsInStreak) {
         updateWinStreakInBoard(boardState, antiDiagonalStreak);
-        updatePlayerState(playerStates, player);
+        roundStatus = updatePlayerState(playerStates, player);
     }
 
     if (state.moveCount === BoardColumns * BoardRows) {
-        if (playerStates.every(p => p.currentStatus === RoundStatus.Continue)) {
-            playerStates.forEach(p => p.currentStatus = RoundStatus.Draw)
-        }
+        roundStatus = RoundStatus.Draw;
     }
 
-    if (state.moveCount % MaxPlayers === 0) { // End of Turn for everyone
-        const winningPlayers = playerStates.filter(p => p.currentStatus === RoundStatus.Win)
-        if (winningPlayers.length > 0) {
-            playerStates.filter(p => p.currentStatus !== RoundStatus.Win).forEach(p => p.currentStatus = RoundStatus.End)
-        }
+    if(roundStatus === RoundStatus.Win && playerStates[player].wins >= MaxWins) {
+        state.gameStatus = GameStatus.End;
     }
-
+    state.roundStatus = roundStatus;
+    if(roundStatus === RoundStatus.Continue) {
+        // Dont modify current player if won or draw
+        state.currentPlayer = (state.currentPlayer % MaxPlayers) + 1;
+    }
     return state;
 }
 
@@ -91,12 +89,9 @@ const updatePlayerState = (playerStates: PlayerState[], player: number) => {
     const playerState = playerStates[player];
     playerState.streaks = playerState.streaks + 1;
     if (playerState.streaks >= NumOfStreaksToWin) {
-        playerState.currentStatus = RoundStatus.Win
         playerState.wins = playerState.wins + 1;
-        for (let i = 0; i < playerStates.length; i++) {
-            if (i === player)
-                continue
-            playerStates[i].currentStatus = RoundStatus.End;
-        }
+        playerState.isRoundWin = true;
+        return RoundStatus.Win;
     }
+    return RoundStatus.Continue;
 }

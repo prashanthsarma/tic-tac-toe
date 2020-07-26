@@ -3,8 +3,6 @@ import { useSelector } from 'react-redux';
 import { selectPlayerState } from '../../gameSlice';
 import { PlayerCoin } from '../PlayerCoin';
 import styles from './PlayerDetail.module.css';
-import { RoundStatus } from '../../interfaces';
-
 
 interface IPlayerProps {
   player: number;
@@ -17,7 +15,7 @@ export const PlayerDetail: React.FC<IPlayerProps> = (props) => {
   const playerState = useSelector(selectPlayerState);
   const p = playerState[player];
 
-  const winnerStyle = p.currentStatus === RoundStatus.Win ? styles.winnerBorder : '';
+  const winnerStyle = p.isRoundWin ? styles.winnerBorder : '';
 
   return (
     <div className={`${styles.playerDetailDiv} ${fontStyle} ${winnerStyle}`}>

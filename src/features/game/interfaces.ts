@@ -9,22 +9,29 @@ export interface CoinState {
 }
 
 export enum RoundStatus {
-    Win,
     Continue,
+    Win,
     Draw,
-    End,
+}
+
+export enum GameStatus {
+    NotStarted = 0,
+    InProgress = 1,
+    End = 2,
 }
 
 export interface PlayerState {
-    currentStatus: RoundStatus;
     streaks: number;
     wins: number;
     name: string;
+    isRoundWin: boolean;
 }
 
 export interface GameState {
     boardState: CoinState[][];
-    currentPlayer: number;
-    moveCount: number
     playerStates: PlayerState[];
+    currentPlayer: number;
+    moveCount: number;
+    gameStatus: GameStatus;
+    roundStatus: RoundStatus;
 }
