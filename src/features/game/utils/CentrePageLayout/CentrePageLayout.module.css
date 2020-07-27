@@ -15,5 +15,5 @@
 }
 
 .customCursor{
-  cursor: url('../../../../resources/svgs/mouse.svg'), auto;
+  cursor: url('../../../../resources/svgs/mouse.svg') 17 0, auto;
 }

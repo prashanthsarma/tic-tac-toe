@@ -22,7 +22,7 @@ export const Arena = () => {
     const onMousemove = (e: MouseEvent) => {
       if (cursorRef == null || cursorRef.current == null)
         return;
-      cursorRef.current!.setAttribute("style", "top: " + (e.pageY - 9) + "px; left: " + (e.pageX + 20) + "px;")
+      cursorRef.current!.setAttribute("style", "top: " + (e.pageY - 9) + "px; left: " + (e.pageX+1) + "px;")
       if (!cursorUpdate) {
         setCursorUpdate(true);
       }
