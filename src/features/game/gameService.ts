@@ -9,6 +9,7 @@ export const updateMoveInGame = (state: GameState, move: IMovePosition) => {
     boardState[move.i][move.j].player = player;
 
     let roundStatus = RoundStatus.Continue;
+    let gameStatus = GameStatus.InProgress;
 
     // check column
     const downStreak = getCoinStreak(boardState, player, move, 0, 1);
@@ -51,13 +52,14 @@ export const updateMoveInGame = (state: GameState, move: IMovePosition) => {
     }
 
     if(roundStatus === RoundStatus.Win && playerStates[player].wins >= MaxWins) {
-        state.gameStatus = GameStatus.End;
+        gameStatus = GameStatus.End;
     }
     if (state.moveCount === BoardColumns * BoardRows 
-        && state.gameStatus !== GameStatus.End) {
+        && roundStatus !== RoundStatus.Win) {
         roundStatus = RoundStatus.Draw;
     }
     state.roundStatus = roundStatus;
+    state.gameStatus = gameStatus
     if(roundStatus === RoundStatus.Continue) {
         // Dont modify current player if won or draw
         state.currentPlayer = (state.currentPlayer % MaxPlayers) + 1;

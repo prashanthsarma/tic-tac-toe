@@ -3,10 +3,20 @@
 }
 
 .win ellipse {
-  stroke: var(--secondary-fg);
+  animation: strokeWin 0.3s alternate-reverse infinite;
+  /* stroke: var(--secondary-fg); */
 }
 
-@keyframes color {
+@keyframes strokeWin {
+  0% {
+    stroke: var(--primary-fg);
+  }
+  100% {
+    stroke: var(--secondary-fg);
+  }
+}
+
+@keyframes pathWin {
   0% {
     fill: var(--primary-fg);
   }
@@ -20,7 +30,7 @@
 }
 
 .win path, .win text {
-  animation: color 0.3s alternate-reverse infinite;
+  animation: pathWin 0.3s alternate-reverse infinite;
   /* fill: var(--secondary-fg); */
 }
 

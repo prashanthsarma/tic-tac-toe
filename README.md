@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
+## Tic Tac Toe
+1. Configuration options are available at src\features\game\config.ts, where number of wins, players, board size, coin size etc. can be configure
+
 ## Available Scripts
 
 In the project directory, you can run:
