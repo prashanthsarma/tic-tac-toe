@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
-import { BoardRows, BoardColumns, MaxPlayers } from './constants';
+import { BoardRows, BoardColumns, MaxPlayers } from './config';
 import { IMovePosition, CoinState, RoundStatus, GameState, PlayerState, GameStatus } from './interfaces';
 import { updateMoveInGame } from './gameService';
 

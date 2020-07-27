@@ -1,14 +1,18 @@
 .item-enter {
+  position: unset;
   opacity: 0;
 }
 .item-enter-active {
+  position: absolute;
   opacity: 1;
   transition: opacity 500ms ease-in;
 }
 .item-exit {
+  position: inherit;
   opacity: 1;
 }
 .item-exit-active {
+  position: absolute;
   opacity: 0;
   transition: opacity 500ms ease-in;
 }

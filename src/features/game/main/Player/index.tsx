@@ -2,7 +2,7 @@ import React, {  } from 'react';
 import { useSelector } from 'react-redux';
 import { selectPlayerState, selectCurrentPlayer, selectRoundStatus } from '../../gameSlice';
 import styles from './Player.module.css';
-import { MaxWins } from '../../constants';
+import { MaxWins } from '../../config';
 import { RoundStatus, PlayerState } from '../../interfaces';
 import { PlayerDetail } from '../../utils/PlayerDetail';
 

@@ -3,7 +3,7 @@ import { render, cleanup } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { Start } from '.';
 import { store } from '../../../app/store';
-import { MaxPlayers } from '../constants';
+import { MaxPlayers } from '../config';
 // import {expect} from '@testing-library/jest-dom';
 
 const renderWithRedux = (

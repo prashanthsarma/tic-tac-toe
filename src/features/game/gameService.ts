@@ -1,5 +1,5 @@
 import { IMovePosition, CoinState, GameState, PlayerState, RoundStatus, GameStatus } from "./interfaces";
-import { BoardColumns, MinWinCoinsInStreak, BoardRows, NumOfStreaksToWin, MaxPlayers, MaxWins } from "./constants";
+import { BoardColumns, MinWinCoinsInStreak, BoardRows, NumOfStreaksToWin, MaxPlayers, MaxWins } from "./config";
 
 
 export const updateMoveInGame = (state: GameState, move: IMovePosition) => {

@@ -1,6 +1,6 @@
 import React, {  } from 'react';
 import styles from './CentralPlaceholder.module.css';
-import { BoardHeight, BoardWidth } from '../../constants';
+import { BoardHeight, BoardWidth } from '../../config';
 
 
 export const CentralPlaceholder: React.FC = (props) => {

@@ -5,7 +5,7 @@ import { CentralPlaceholder } from '../utils/CentralPlaceholder';
 import { CentrePageLayout } from '../utils/CentrePageLayout';
 import { PlayerDetailInput } from '../utils/PlayerDetailInput';
 import styles from './Start.module.css';
-import { MaxPlayers } from '../constants';
+import { MaxPlayers } from '../config';
 
 
 

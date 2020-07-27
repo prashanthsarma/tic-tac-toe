@@ -5,7 +5,7 @@ import { CentralPlaceholder } from '../utils/CentralPlaceholder';
 import { CentrePageLayout } from '../utils/CentrePageLayout';
 import styles from './End.module.css';
 import { PlayerDetail } from '../utils/PlayerDetail';
-import { MaxWins } from '../constants';
+import { MaxWins } from '../config';
 
 
 export const End = () => {
@@ -16,9 +16,9 @@ export const End = () => {
 
 
   return (
-    <CentrePageLayout>
+    <CentrePageLayout onClick={()=>dispatch(nextGame())}>
       <CentralPlaceholder>
-        <div className={styles.endContainer} onClick={()=>dispatch(nextGame())}>
+        <div className={styles.endContainer} >
           <span className={styles.textWinner}>WINNER!</span>
           <div className={styles.playerDetailContainer}>
             <PlayerDetail player={player} fontStyle={styles.detailFontStyle} />

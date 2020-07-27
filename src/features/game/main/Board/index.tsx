@@ -7,7 +7,7 @@ import {
 } from '../../gameSlice';
 import { Coin } from '../Coin';
 import { CoinState, RoundStatus } from '../../interfaces';
-import { CellWidth } from '../../constants';
+import { CoinSize } from '../../config';
 import { Lines } from './Lines';
 import styles from './Board.module.css';
 
@@ -17,7 +17,7 @@ export const Board: React.FC = () => {
   const dispatch = useDispatch();
 
   const getRow = (row: CoinState[], i: number,) => {
-    const cellStyle: CSSProperties = { width: `${CellWidth}px`, height: `${CellWidth}px` }
+    const cellStyle: CSSProperties = { width: `${CoinSize}px`, height: `${CoinSize}px` }
 
     return (
       <div key={`row${i}`}className={styles.row}>
