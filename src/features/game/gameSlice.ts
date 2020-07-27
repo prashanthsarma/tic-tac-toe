@@ -42,9 +42,9 @@ const initPlayerState = () => {
 export const initialState: GameState = {
   boardState: initBoardState(),
   playerStates: initPlayerState(),
-  currentPlayer: 1,
   gameStatus: GameStatus.NotStarted,
   roundStatus: RoundStatus.Continue,
+  currentPlayer: 1,
   moveCount: 0,
 };
 
@@ -76,11 +76,28 @@ export const gameSlice = createSlice({
         state.moveCount = 0;
       }
     },
+    nextGame: state => {
+      if (state.gameStatus === GameStatus.End) {
+        
+        state.boardState = initBoardState();
+        state.playerStates.forEach(p => {
+          p.streaks =0;
+          p.wins =0;
+          p.isRoundWin = false
+        });
+        
+        
+        state.roundStatus = RoundStatus.Continue;
+        state.gameStatus = GameStatus.NotStarted;
+        state.currentPlayer = 1;
+        state.moveCount = 0;
+      }
+    },
   },
 });
 
 
-export const { makeMove, updatePlayer, nextRound, startGame } = gameSlice.actions;
+export const { makeMove, updatePlayer, nextRound, startGame, nextGame } = gameSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
