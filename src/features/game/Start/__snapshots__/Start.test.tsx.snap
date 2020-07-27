@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should take a snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="fullPage "
+  >
+    <div
+      class="centrePage"
+    >
+      <div
+        class="outerBorder"
+      >
+        <div
+          class="innerBox"
+          style="height: 441px; width: 441px;"
+        >
+          <form
+            class="containerDiv"
+          >
+            <div
+              class="welcomeText"
+            >
+              <span
+                class="textWelcomeTo"
+              >
+                Welcome to 
+              </span>
+              <span
+                class="textTicTacToe"
+              >
+                TIC TAC TOE
+              </span>
+            </div>
+            <div
+              class="listOfPlayerDetails"
+              data-testid="player-detail-list"
+            >
+              <div
+                class="control"
+                data-testid="player-detail"
+              >
+                <label>
+                  PLAYER 1
+                </label>
+                <input
+                  data-testid="player-detail-name"
+                  maxlength="15"
+                  minlength="1"
+                  name="name"
+                  required=""
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                class="control"
+                data-testid="player-detail"
+              >
+                <label>
+                  PLAYER 2
+                </label>
+                <input
+                  data-testid="player-detail-name"
+                  maxlength="15"
+                  minlength="1"
+                  name="name"
+                  required=""
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <button
+              class="continueBtn"
+            >
+              Continue
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

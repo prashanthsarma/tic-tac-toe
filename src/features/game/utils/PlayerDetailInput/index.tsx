@@ -11,9 +11,10 @@ export const PlayerDetailInput: React.FC<IPlayerDetailInput> = (props) => {
   const { playerDetail, setPlayerDetail } = usePlayerState(props.player);
 
   return (
-    <div className={styles.control}>
+    <div data-testid="player-detail" className={styles.control}>
       <label>{`PLAYER ${props.player}`}</label>
       <input type="text"
+        data-testid="player-detail-name"
         name="name"
         required
         minLength={1}

@@ -31,7 +31,7 @@ export const Start: React.FC = () => {
             <span className={styles.textWelcomeTo}>{`Welcome to `}</span>
             <span className={styles.textTicTacToe} >{`TIC TAC TOE`}</span>
           </div>
-          <div className={styles.listOfPlayerDetails}>
+          <div  data-testid="player-detail-list" className={styles.listOfPlayerDetails}>
             {playerDetails}
           </div>
           <button className={styles.continueBtn}>Continue</button>

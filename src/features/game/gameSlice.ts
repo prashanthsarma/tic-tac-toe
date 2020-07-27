@@ -39,7 +39,7 @@ const initPlayerState = () => {
 }
 
 // Player at index 0 is the unused. 
-const initialState: GameState = {
+export const initialState: GameState = {
   boardState: initBoardState(),
   playerStates: initPlayerState(),
   currentPlayer: 1,
