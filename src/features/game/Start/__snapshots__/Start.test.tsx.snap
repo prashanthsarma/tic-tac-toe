@@ -45,7 +45,7 @@ exports[`should take a snapshot 1`] = `
                 </label>
                 <input
                   data-testid="player-detail-name"
-                  maxlength="15"
+                  maxlength="25"
                   minlength="1"
                   name="name"
                   required=""
@@ -62,7 +62,7 @@ exports[`should take a snapshot 1`] = `
                 </label>
                 <input
                   data-testid="player-detail-name"
-                  maxlength="15"
+                  maxlength="25"
                   minlength="1"
                   name="name"
                   required=""

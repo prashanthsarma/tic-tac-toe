@@ -2,6 +2,7 @@
   position: relative;
   height: 137px;
   width: 123px;
+  margin: 40px
 }
 
 .detailFontStyle {
@@ -12,7 +13,7 @@
   position: absolute;
   display: flex;
   width: 123px;
-  justify-content: space-between;
+  justify-content: center;
   bottom: -25px;
   left: 0px;
   height: 10px;

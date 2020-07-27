@@ -15,11 +15,11 @@
   }
 }
 
-.normal path {
+.normal path, .normal text {
   fill: var(--primary-fg);
 }
 
-.win path {
+.win path, .win text {
   animation: color 0.3s alternate-reverse infinite;
   /* fill: var(--secondary-fg); */
 }

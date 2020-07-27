@@ -18,7 +18,7 @@ export const PlayerDetailInput: React.FC<IPlayerDetailInput> = (props) => {
         name="name"
         required
         minLength={1}
-        maxLength={15}
+        maxLength={25}
         value={playerDetail.name}
         onChange={setPlayerDetail}>
       </input>

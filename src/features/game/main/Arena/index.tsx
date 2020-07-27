@@ -8,6 +8,7 @@ import { Player } from '../Player';
 import { CentrePageLayout } from '../../utils/CentrePageLayout';
 import { RoundStatus } from '../../interfaces';
 import { PlayerCoin } from '../../utils/PlayerCoin';
+import { MaxPlayers } from '../../config';
 
 export const Arena = () => {
 
@@ -21,7 +22,7 @@ export const Arena = () => {
     const onMousemove = (e: MouseEvent) => {
       if (cursorRef == null || cursorRef.current == null)
         return;
-      cursorRef.current!.setAttribute("style", "top: " + (e.pageY-9) + "px; left: " + (e.pageX + 20) + "px;")
+      cursorRef.current!.setAttribute("style", "top: " + (e.pageY - 9) + "px; left: " + (e.pageX + 20) + "px;")
       if (!cursorUpdate) {
         setCursorUpdate(true);
       }
@@ -46,18 +47,34 @@ export const Arena = () => {
   }, [status, cursorRef, dispatch, cursorUpdate])
 
   const showCursor = status === RoundStatus.Continue && cursorUpdate;
+
+  const oddPlayers = [];
+  const evenPlayers = [];
+  for (let i = 1; i <= MaxPlayers; i = i + 2) {
+    oddPlayers.push(<Player key={`Player${i}`} player={i} />)
+  }
+  for (let i = 2; i <= MaxPlayers; i = i + 2) {
+    evenPlayers.push(<Player key={`Player${i}`} player={i} />)
+  }
+
+
+
   return (
-    <CentrePageLayout isCustomCursor>
+    <>
+      <CentrePageLayout isCustomCursor>
         <div ref={cursorRef} className={`${styles.cursor} ${showCursor ? '' : 'none'}`}>
           <PlayerCoin player={player} />
         </div>
-
-        <Player player={1} />
+        <div>
+          {oddPlayers}
+        </div>
         <CentralPlaceholder>
           <Board />
         </CentralPlaceholder>
-        <Player player={2} />
-      {/* <div className={styles.arenaBelowCenter}>another div here</div> */}
-    </CentrePageLayout>
+        <div>
+          {evenPlayers}
+        </div>
+      </CentrePageLayout>
+    </>
   );
 }

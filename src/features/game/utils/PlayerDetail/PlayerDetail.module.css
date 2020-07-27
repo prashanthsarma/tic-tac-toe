@@ -40,7 +40,7 @@
   stroke: var(--primary-fg);
 }
 
-.playerDetailDiv path {
+.playerDetailDiv path, .playerDetailDiv text {
   fill: var(--primary-fg);
 }
 
