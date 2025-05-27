@@ -1,4 +1,4 @@
-import React, {  } from 'react';
+import type { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { selectPlayerState } from '../../gameSlice';
 import { PlayerCoin } from '../PlayerCoin';
@@ -9,7 +9,7 @@ interface IPlayerProps {
   fontStyle: string;
 }
 
-export const PlayerDetail: React.FC<IPlayerProps> = (props) => {
+export const PlayerDetail: FC<IPlayerProps> = (props) => {
 
   const { player, fontStyle } = props;
   const playerState = useSelector(selectPlayerState);

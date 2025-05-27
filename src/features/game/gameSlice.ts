@@ -4,9 +4,9 @@ import { BoardRows, BoardColumns, MaxPlayers } from './config';
 import { IMovePosition, CoinState, RoundStatus, GameState, PlayerState, GameStatus } from './interfaces';
 import { updateMoveInGame } from './gameService';
 
-interface IMakeMovePayload {
-  move: IMovePosition;
-}
+// interface IMakeMovePayload {
+//   move: IMovePosition;
+// }
 
 interface IUpdatePlayerPayload {
   player: number;
@@ -14,9 +14,9 @@ interface IUpdatePlayerPayload {
   value: any;
 }
 
-interface IEmpty {
-  i: number;
-}
+// interface IEmpty {
+//   i: number;
+// }
 
 const initBoardState = () => {
   const initial: CoinState[][] = [];
@@ -89,7 +89,7 @@ export const gameSlice = createSlice({
         state.moveCount = 0;
       }
     },
-    reset: (state) => {
+    reset: (_) => {
       return initialState;
     }
   },

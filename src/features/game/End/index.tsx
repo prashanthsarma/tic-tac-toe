@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectPlayerState, nextGame } from '../gameSlice';
 import { CentralPlaceholder } from '../utils/CentralPlaceholder';

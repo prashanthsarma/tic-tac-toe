@@ -1,4 +1,3 @@
-import React from 'react';
 import { Game } from './features/game';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
 import './App.css';

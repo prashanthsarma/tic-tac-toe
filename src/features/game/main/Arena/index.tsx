@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, MutableRefObject, useState } from 'react';
+import { useEffect, useRef, MutableRefObject, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectRoundStatus, selectCurrentPlayer, nextRound } from '../../gameSlice';
 import { Board } from '../Board';
@@ -27,7 +27,7 @@ export const Arena = () => {
       }
     }
     
-    const onMouseUp = (e: MouseEvent) => {
+    const onMouseUp = (_: MouseEvent) => {
       // Only handle mouse up for round end
       if (status !== RoundStatus.Continue) {
         dispatch(nextRound());
@@ -60,7 +60,7 @@ export const Arena = () => {
     evenPlayers.push(<Player key={`Player${i}`} player={i} />)
   }
 
-  const handleLayoutClick = (e: React.MouseEvent) => {
+  const handleLayoutClick = () => {
     // Only handle clicks for round end
     if (status !== RoundStatus.Continue) {
       dispatch(nextRound());
