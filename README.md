@@ -2,7 +2,7 @@
 
 A modern implementation of the classic Tic Tac Toe game using React, Redux, and TypeScript. This project features a customizable board size, multiple players, and beautiful animations.
 
-![Tic Tac Toe Game](public/screenshots/game-screenshot.png)
+![Tic Tac Toe Game](public/screenshots/gameScreenshot.jpg)
 
 ## Features
 
