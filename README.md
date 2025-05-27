@@ -1,58 +1,75 @@
-# Tic Tac Toe
+# Modern Tic Tac Toe
 
-A modern implementation of the classic Tic Tac Toe game using React, Redux, and TypeScript. This project features a customizable board size, multiple players, and beautiful animations.
-
-![Tic Tac Toe Game](public/screenshots/gameScreenshot.jpg)
+A modern implementation of the classic Tic Tac Toe game built with React 19, TypeScript, Redux Toolkit, Vite, and Tailwind CSS.
 
 ## Features
 
-- 🎮 Customizable board size (default 7x7)
-- 👥 Support for multiple players (up to 4 players)
-- 🎯 Custom cursor with player tokens
-- ✨ Smooth transitions and animations
-- 🏆 Win streak tracking
-- 🎨 Modern UI design
+- 🎮 Classic Tic Tac Toe gameplay
+- 🎨 Modern UI with Tailwind CSS
+- 📱 Responsive design
+- 🔄 State management with Redux Toolkit
+- ⚡ Lightning-fast with Vite
+- 🔒 Type-safe with TypeScript
 
-## Configuration
+## Prerequisites
 
-Game settings can be customized in `src/features/game/config.ts`:
-- Board size
-- Number of players
-- Required wins
-- Coin size
-- And more...
+- Node.js 20.0.0 or higher
+- npm 10.0.0 or higher
 
-## Getting Started
+## Installation
 
-1. Clone the repository
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/tictactoe.git
+cd tictactoe
+```
+
 2. Install dependencies:
-   ```bash
-   yarn install
-   ```
-3. Start the development server:
-   ```bash
-   yarn start
-   ```
-4. Open [http://localhost:3000](http://localhost:3000) to play the game
+```bash
+npm install
+```
 
-## Available Scripts
+## Development
 
-- `yarn start` - Runs the app in development mode
-- `yarn test` - Launches the test runner
-- `yarn build` - Builds the app for production
-- `yarn eject` - Ejects from Create React App
+To start the development server:
+
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:3000`.
+
+## Building for Production
+
+To create a production build:
+
+```bash
+npm run build
+```
+
+To preview the production build:
+
+```bash
+npm run preview
+```
+
+## Testing
+
+To run tests:
+
+```bash
+npm test
+```
 
 ## Technologies Used
 
-- React
+- React 19
+- TypeScript 5
 - Redux Toolkit
-- TypeScript
-- CSS Modules
-- React Transition Group
+- Vite
+- Tailwind CSS
+- Vitest
 
-## Learn More
+## License
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
-
-- [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started)
-- [React documentation](https://reactjs.org/)
+MIT License
