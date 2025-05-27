@@ -88,11 +88,14 @@ export const gameSlice = createSlice({
         state.currentPlayer = 1;
         state.moveCount = 0;
       }
+    },
+    reset: (state) => {
+      return initialState;
     }
   },
 });
 
-export const { makeMove, updatePlayer, nextRound, startGame, nextGame } = gameSlice.actions;
+export const { makeMove, updatePlayer, startGame, nextRound, nextGame, reset } = gameSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

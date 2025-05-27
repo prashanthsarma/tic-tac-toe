@@ -1,43 +1,43 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`should take a snapshot 1`] = `
-<DocumentFragment>
+exports[`Start Component > should render correctly 1`] = `
+<div>
   <div
-    class="fullPage "
+    class="_fullPage_cdad51 "
   >
     <div
-      class="centrePage"
+      class="_centrePage_cdad51"
     >
       <div
-        class="outerBorder"
+        class="_outerBorder_eb02eb"
       >
         <div
-          class="innerBox"
-          style="height: 441px; width: 441px;"
+          class="_innerBox_eb02eb"
+          style="height: 525px; width: 525px;"
         >
           <form
-            class="containerDiv"
+            class="_containerDiv_6e7aa2"
           >
             <div
-              class="welcomeText"
+              class="_welcomeText_6e7aa2"
             >
               <span
-                class="textWelcomeTo"
+                class="_textWelcomeTo_6e7aa2"
               >
                 Welcome to 
               </span>
               <span
-                class="textTicTacToe"
+                class="_textTicTacToe_6e7aa2"
               >
                 TIC TAC TOE
               </span>
             </div>
             <div
-              class="listOfPlayerDetails"
+              class="_listOfPlayerDetails_6e7aa2"
               data-testid="player-detail-list"
             >
               <div
-                class="control"
+                class="_control_1d93d0"
                 data-testid="player-detail"
               >
                 <label>
@@ -54,7 +54,7 @@ exports[`should take a snapshot 1`] = `
                 />
               </div>
               <div
-                class="control"
+                class="_control_1d93d0"
                 data-testid="player-detail"
               >
                 <label>
@@ -70,9 +70,43 @@ exports[`should take a snapshot 1`] = `
                   value=""
                 />
               </div>
+              <div
+                class="_control_1d93d0"
+                data-testid="player-detail"
+              >
+                <label>
+                  PLAYER 3
+                </label>
+                <input
+                  data-testid="player-detail-name"
+                  maxlength="25"
+                  minlength="1"
+                  name="name"
+                  required=""
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                class="_control_1d93d0"
+                data-testid="player-detail"
+              >
+                <label>
+                  PLAYER 4
+                </label>
+                <input
+                  data-testid="player-detail-name"
+                  maxlength="25"
+                  minlength="1"
+                  name="name"
+                  required=""
+                  type="text"
+                  value=""
+                />
+              </div>
             </div>
             <button
-              class="continueBtn"
+              class="_continueBtn_6e7aa2"
             >
               Continue
             </button>
@@ -81,5 +115,5 @@ exports[`should take a snapshot 1`] = `
       </div>
     </div>
   </div>
-</DocumentFragment>
+</div>
 `;

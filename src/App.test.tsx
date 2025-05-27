@@ -1,15 +1,19 @@
-import React from 'react';
-import { render } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
+import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByTestId } = render(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
+describe('App', () => {
+  it('renders the TicTacToe game', () => {
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
 
-  expect(getByTestId(/tictactoe/i)).toBeInTheDocument();
+    const gameElement = screen.getByTestId('tictactoe');
+    expect(gameElement).toBeInTheDocument();
+    expect(gameElement).toHaveClass('App');
+  });
 });
