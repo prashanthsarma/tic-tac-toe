@@ -16,50 +16,53 @@ export const Board: React.FC = () => {
   const status = useSelector(selectRoundStatus);
   const dispatch = useDispatch();
 
+  const handleCellClick = (i: number, j: number) => {
+    if (status === RoundStatus.Continue) {
+      dispatch(makeMove({ move: { i, j } }));
+    }
+  };
+
   const getRow = (row: CoinState[], i: number,) => {
     const cellStyle: CSSProperties = { width: `${CoinSize}px`, height: `${CoinSize}px` }
 
     return (
-      <div key={`row${i}`}className={styles.row}>
+      <div key={`row${i}`} className={styles.row}>
         {row.map((c, j) => (
           <React.Fragment key={`${i},${j}`}>
             {
               c.player > 0
                 ?
-                <div key={`${i},${j}`}
+                <div
+                  key={`${i},${j}`}
                   style={cellStyle}
-                  className={styles.coinContainer}>
+                  className={styles.coinContainer}
+                >
                   <Coin i={i} j={j} player={c.player} isWin={c.isWinCoin} />
                 </div>
                 :
-                <>{
-                  status === RoundStatus.Continue ?
-                    < div key={`${i},${j}`}
-                      style={cellStyle}
-                      className={styles.coinContainer}
-                      onClick={() => dispatch(makeMove({ move: { i, j } }))}>
-                    </div>
-                    : < div key={`${i},${j}`}
-                      style={cellStyle}
-                      className={styles.coinContainer}
-                    >
-                    </div>
-                }
-                </>
+                <div
+                  key={`${i},${j}`}
+                  style={cellStyle}
+                  className={styles.coinContainer}
+                  onClick={() => handleCellClick(i, j)}
+                >
+                </div>
             }
           </React.Fragment>
-        ))
-        }
-      </div >
-
+        ))}
+      </div>
     )
   }
 
   const rows = boardState.map((row, i) => getRow(row, i));
 
   return (
-    <div className={styles.outerborder}>
-      <div className={styles.gameTable}>
+    <div className={styles.outerborder} onClick={(e) => {
+      e.stopPropagation();
+    }}>
+      <div className={styles.gameTable} onClick={(e) => {
+        e.stopPropagation();
+      }}>
         {rows}
         <Lines />
       </div>

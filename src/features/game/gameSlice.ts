@@ -52,22 +52,21 @@ export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    // Redux Toolkit allows us to write "mutating" logic in reducers. It
-    // doesn't actually mutate the state because it uses the Immer library,
-    // which detects changes to a "draft state" and produces a brand new
-    // immutable state based off those changes
-    makeMove: (state, action: PayloadAction<IMakeMovePayload>) => {
+    makeMove: (state, action: PayloadAction<{ move: IMovePosition }>) => {
       const { move } = action.payload;
       state = updateMoveInGame(state, move);
     },
     updatePlayer: (state, action: PayloadAction<IUpdatePlayerPayload>) => {
       const { player, property, value } = action.payload;
-      state.playerStates[player][property] = value as never;
+      state.playerStates[player] = {
+        ...state.playerStates[player],
+        [property]: value
+      };
     },
-    startGame: state => {
+    startGame: (state) => {
       state.gameStatus = GameStatus.InProgress;
     },
-    nextRound: state => {
+    nextRound: (state) => {
       if (state.gameStatus === GameStatus.InProgress) {
         state.currentPlayer = (state.currentPlayer % MaxPlayers) + 1;
         state.playerStates.forEach(p => p.isRoundWin = false);
@@ -76,26 +75,22 @@ export const gameSlice = createSlice({
         state.moveCount = 0;
       }
     },
-    nextGame: state => {
+    nextGame: (state) => {
       if (state.gameStatus === GameStatus.End) {
-        
         state.boardState = initBoardState();
         state.playerStates.forEach(p => {
-          p.streaks =0;
-          p.wins =0;
+          p.streaks = 0;
+          p.wins = 0;
           p.isRoundWin = false
         });
-        
-        
         state.roundStatus = RoundStatus.Continue;
         state.gameStatus = GameStatus.NotStarted;
         state.currentPlayer = 1;
         state.moveCount = 0;
       }
-    },
+    }
   },
 });
-
 
 export const { makeMove, updatePlayer, nextRound, startGame, nextGame } = gameSlice.actions;
 

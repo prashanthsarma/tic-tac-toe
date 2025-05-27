@@ -19,7 +19,7 @@ export const PlayerDetail: React.FC<IPlayerProps> = (props) => {
   }
 
   const winnerStyle = p.isRoundWin ? styles.winnerBorder : '';
-  console.log(p);
+  
 
   return (
     <div className={`${styles.playerDetailDiv} ${fontStyle} ${winnerStyle}`}>

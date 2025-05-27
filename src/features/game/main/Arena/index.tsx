@@ -11,7 +11,6 @@ import { PlayerCoin } from '../../utils/PlayerCoin';
 import { MaxPlayers } from '../../config';
 
 export const Arena = () => {
-
   const [cursorUpdate, setCursorUpdate] = useState(false);
   const status = useSelector(selectRoundStatus);
   const player = useSelector(selectCurrentPlayer);
@@ -27,20 +26,24 @@ export const Arena = () => {
         setCursorUpdate(true);
       }
     }
+    
     const onMouseUp = (e: MouseEvent) => {
-      dispatch(nextRound());
+      // Only handle mouse up for round end
+      if (status !== RoundStatus.Continue) {
+        dispatch(nextRound());
+      }
     }
+
     if (status === RoundStatus.Continue) {
-      console.log("add event")
-      window.addEventListener('mousemove', onMousemove)
+       window.addEventListener('mousemove', onMousemove)
       window.removeEventListener('click', onMouseUp)
     } else {
       setCursorUpdate(false);
       window.removeEventListener('mousemove', onMousemove)
       window.addEventListener('click', onMouseUp)
     }
+
     return () => {
-      console.log("mousemov remove final");
       window.removeEventListener('mousemove', onMousemove);
       window.removeEventListener('click', onMouseUp)
     }
@@ -57,24 +60,27 @@ export const Arena = () => {
     evenPlayers.push(<Player key={`Player${i}`} player={i} />)
   }
 
-
+  const handleLayoutClick = (e: React.MouseEvent) => {
+    // Only handle clicks for round end
+    if (status !== RoundStatus.Continue) {
+      dispatch(nextRound());
+    }
+  };
 
   return (
-    <>
-      <CentrePageLayout isCustomCursor>
-        <div ref={cursorRef} className={`${styles.cursor} ${showCursor ? '' : 'none'}`}>
-          <PlayerCoin player={player} />
-        </div>
-        <div>
-          {oddPlayers}
-        </div>
-        <CentralPlaceholder>
-          <Board />
-        </CentralPlaceholder>
-        <div>
-          {evenPlayers}
-        </div>
-      </CentrePageLayout>
-    </>
+    <CentrePageLayout isCustomCursor onClick={handleLayoutClick}>
+      <div ref={cursorRef} className={`${styles.cursor} ${showCursor ? '' : 'none'}`}>
+        <PlayerCoin player={player} />
+      </div>
+      <div>
+        {oddPlayers}
+      </div>
+      <CentralPlaceholder>
+        <Board />
+      </CentralPlaceholder>
+      <div>
+        {evenPlayers}
+      </div>
+    </CentrePageLayout>
   );
 }
