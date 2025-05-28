@@ -70,40 +70,6 @@ exports[`Start Component > should render correctly 1`] = `
                   value=""
                 />
               </div>
-              <div
-                class="_control_1d93d0"
-                data-testid="player-detail"
-              >
-                <label>
-                  PLAYER 3
-                </label>
-                <input
-                  data-testid="player-detail-name"
-                  maxlength="25"
-                  minlength="1"
-                  name="name"
-                  required=""
-                  type="text"
-                  value=""
-                />
-              </div>
-              <div
-                class="_control_1d93d0"
-                data-testid="player-detail"
-              >
-                <label>
-                  PLAYER 4
-                </label>
-                <input
-                  data-testid="player-detail-name"
-                  maxlength="25"
-                  minlength="1"
-                  name="name"
-                  required=""
-                  type="text"
-                  value=""
-                />
-              </div>
             </div>
             <button
               class="_continueBtn_6e7aa2"
