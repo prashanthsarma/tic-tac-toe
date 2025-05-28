@@ -5,6 +5,7 @@ import { GameStatus } from './interfaces';
 import { Arena } from './main/Arena';
 import { End } from './End';
 import { Start } from './Start';
+import { Configure} from './Configure';
 import './styles.css';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { ReactComponent as Logo } from './../../resources/svgs/TicTacToe.svg'
@@ -19,9 +20,17 @@ export const Game = () => {
   // Avoiding use of react router
   const renderComponent = () => {
     switch (gameStatus) {
-      case GameStatus.NotStarted:
+      case GameStatus.Configure:
         return (
-          <CSSTransition nodeRef={startRef} key={'Start'} timeout={500} classNames="item">
+          <CSSTransition nodeRef={startRef} key={'Configure'} timeout={500} classNames="item">
+            <div ref={startRef}>
+              <Configure />
+            </div>
+          </CSSTransition>
+        );
+      case GameStatus.NewGame:
+        return (
+          <CSSTransition nodeRef={startRef} key={'NewGame'} timeout={500} classNames="item">
             <div ref={startRef}>
               <Start />
             </div>

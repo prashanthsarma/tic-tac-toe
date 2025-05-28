@@ -15,7 +15,8 @@ export enum RoundStatus {
 }
 
 export enum GameStatus {
-    NotStarted = 0,
+    Configure = 3,
+    NewGame = 0,
     InProgress = 1,
     End = 2,
 }
@@ -27,6 +28,16 @@ export interface PlayerState {
     isRoundWin: boolean;
 }
 
+export interface GameConfig {
+    boardRows: number;
+    boardColumns: number;
+    minWinCoinsInStreak: number;
+    numOfStreaksToWin: number;
+    maxWins: number;
+    maxPlayers: number;
+    coinSize: number;
+}
+
 export interface GameState {
     boardState: CoinState[][];
     playerStates: PlayerState[];
@@ -34,4 +45,5 @@ export interface GameState {
     moveCount: number;
     gameStatus: GameStatus;
     roundStatus: RoundStatus;
+    config: GameConfig;
 }

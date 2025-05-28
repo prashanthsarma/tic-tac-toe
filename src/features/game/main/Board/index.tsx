@@ -4,16 +4,17 @@ import {
   selectBoardState,
   makeMove,
   selectRoundStatus,
+  selectGameConfig,
 } from '../../gameSlice';
 import { Coin } from '../Coin';
 import { CoinState, RoundStatus } from '../../interfaces';
-import { CoinSize } from '../../config';
 import { Lines } from './Lines';
 import styles from './Board.module.css';
 
 export const Board: React.FC = () => {
   const boardState = useSelector(selectBoardState);
   const status = useSelector(selectRoundStatus);
+  const config = useSelector(selectGameConfig);
   const dispatch = useDispatch();
 
   const handleCellClick = (i: number, j: number) => {
@@ -23,7 +24,7 @@ export const Board: React.FC = () => {
   };
 
   const getRow = (row: CoinState[], i: number,) => {
-    const cellStyle: CSSProperties = { width: `${CoinSize}px`, height: `${CoinSize}px` }
+    const cellStyle: CSSProperties = { width: `${config.coinSize}px`, height: `${config.coinSize}px` }
 
     return (
       <div key={`row${i}`} className={styles.row}>

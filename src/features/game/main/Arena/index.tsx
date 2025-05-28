@@ -1,6 +1,6 @@
-import { useEffect, useRef, MutableRefObject, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectRoundStatus, selectCurrentPlayer, nextRound } from '../../gameSlice';
+import { selectRoundStatus, selectCurrentPlayer, nextRound, selectGameConfig } from '../../gameSlice';
 import { Board } from '../Board';
 import { CentralPlaceholder } from '../../utils/CentralPlaceholder';
 import styles from './Arena.module.css';
@@ -8,13 +8,13 @@ import { Player } from '../Player';
 import { CentrePageLayout } from '../../utils/CentrePageLayout';
 import { RoundStatus } from '../../interfaces';
 import { PlayerCoin } from '../../utils/PlayerCoin';
-import { MaxPlayers } from '../../config';
 
 export const Arena = () => {
   const [cursorUpdate, setCursorUpdate] = useState(false);
   const status = useSelector(selectRoundStatus);
   const player = useSelector(selectCurrentPlayer);
-  const cursorRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
+  const config = useSelector(selectGameConfig);
+  const cursorRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -53,10 +53,10 @@ export const Arena = () => {
 
   const oddPlayers = [];
   const evenPlayers = [];
-  for (let i = 0; i < MaxPlayers; i = i + 2) {
+  for (let i = 0; i < config.maxPlayers; i = i + 2) {
     oddPlayers.push(<Player key={`Player${i}`} player={i} />)
   }
-  for (let i = 1; i < MaxPlayers; i = i + 2) {
+  for (let i = 1; i < config.maxPlayers; i = i + 2) {
     evenPlayers.push(<Player key={`Player${i}`} player={i} />)
   }
 

@@ -1,25 +1,24 @@
 import React, { SyntheticEvent } from 'react';
-import { useDispatch } from 'react-redux';
-import { startGame } from '../gameSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { startGame, selectGameConfig } from '../gameSlice';
 import { CentralPlaceholder } from '../utils/CentralPlaceholder';
 import { CentrePageLayout } from '../utils/CentrePageLayout';
 import { PlayerDetailInput } from '../utils/PlayerDetailInput';
 import styles from './Start.module.css';
-import { MaxPlayers } from '../config';
 
 
 
 export const Start: React.FC = () => {
-
   const dispatch = useDispatch();
+  const config = useSelector(selectGameConfig);
 
   const onContinueClicked = (e: SyntheticEvent) => {
     e.preventDefault();
     dispatch(startGame());
   }
 
-  const playerDetails = []
-  for (let i = 0; i < MaxPlayers; i++) {
+  const playerDetails = [];
+  for (let i = 0; i < config.maxPlayers; i++) {
     playerDetails.push(<PlayerDetailInput player={i} key={i} />)
   }
 

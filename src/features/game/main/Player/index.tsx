@@ -1,8 +1,7 @@
 import type { FC } from 'react';
 import { useSelector } from 'react-redux';
-import { selectPlayerState, selectCurrentPlayer, selectRoundStatus } from '../../gameSlice';
+import { selectPlayerState, selectCurrentPlayer, selectRoundStatus, selectGameConfig } from '../../gameSlice';
 import styles from './Player.module.css';
-import { MaxWins } from '../../config';
 import { RoundStatus, PlayerState } from '../../interfaces';
 import { PlayerDetail } from '../../utils/PlayerDetail';
 
@@ -16,10 +15,11 @@ export const Player: FC<IPlayerProps> = (props) => {
   const playerState = useSelector(selectPlayerState);
   const currentPlayer = useSelector(selectCurrentPlayer);
   const roundstatus = useSelector(selectRoundStatus);
+  const config = useSelector(selectGameConfig);
   const p = playerState[player];
 
   const roundWins = []
-  for (let i = 1; i <= MaxWins; i++) {
+  for (let i = 1; i <= config.maxWins; i++) {
     roundWins.push(
       <svg key={i} viewBox={`0 0 10 10`} className={i <= p.wins ? styles.winSvg : ''}>
         <ellipse className={i <= p.wins ? styles.winEllipse : styles.emptyEllipse}

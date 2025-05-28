@@ -3,7 +3,6 @@ import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { Start } from '.';
 import { store } from '../../../app/store';
-import { MaxPlayers } from '../config';
 
 const renderWithRedux = (component: React.ReactElement) => {
   return {
@@ -27,7 +26,8 @@ describe('Start Component', () => {
   it('should have name input for all players', () => {
     renderWithRedux(<Start />);
     const playerInputs = screen.getAllByTestId('player-detail');
-    expect(playerInputs).toHaveLength(MaxPlayers);
+    const state = store.getState();
+    expect(playerInputs).toHaveLength(state.game.config.maxPlayers);
   });
 
   it('should update player name in store when input changes', () => {
