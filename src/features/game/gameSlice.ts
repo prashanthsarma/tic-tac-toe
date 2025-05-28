@@ -3,6 +3,7 @@ import { RootState } from '../../app/store';
 import { defaultConfig } from './config';
 import { IMovePosition, CoinState, RoundStatus, GameState, PlayerState, GameStatus, GameConfig } from './interfaces';
 import { updateMoveInGame } from './gameService';
+import { makeAIMoveSync } from './aiService';
 
 // interface IMakeMovePayload {
 //   move: IMovePosition;
@@ -56,10 +57,14 @@ export const initialState: GameState = {
 export const gameSlice = createSlice({
   name: 'game',
   initialState,
-  reducers: {
-    makeMove: (state, action: PayloadAction<{ move: IMovePosition }>) => {
+  reducers: {    makeMove: (state, action: PayloadAction<{ move: IMovePosition }>) => {
       const { move } = action.payload;
       state = updateMoveInGame(state, move);
+      
+      // If it's now player 1's turn (AI), make AI move
+      if (state.currentPlayer === 1 && state.gameStatus === GameStatus.InProgress) {
+        state = makeAIMoveSync(state);
+      }
     },
     updatePlayer: (state, action: PayloadAction<IUpdatePlayerPayload>) => {
       const { player, property, value } = action.payload;
@@ -70,14 +75,19 @@ export const gameSlice = createSlice({
     },
     startGame: (state) => {
       state.gameStatus = GameStatus.InProgress;
-    },
-    nextRound: (state) => {
+    },    nextRound: (state) => {
       if (state.gameStatus === GameStatus.InProgress) {
         state.currentPlayer = (state.currentPlayer + 1) % state.config.maxPlayers;
         state.playerStates.forEach(p => p.isRoundWin = false);
         state.boardState = initBoardState(state.config);
         state.roundStatus = RoundStatus.Continue;
         state.moveCount = 0;
+        
+        // If it's now player 1's turn (AI), make AI move
+        if (state.currentPlayer === 1 && state.gameStatus === GameStatus.InProgress) {
+          const aiUpdatedState = makeAIMoveSync(state);
+          return aiUpdatedState;
+        }
       }
     },
     nextGame: (state) => {
@@ -106,8 +116,7 @@ export const gameSlice = createSlice({
         state.moveCount = 0;
         state.roundStatus = RoundStatus.Continue;
       }
-    },
-    updateConfig: (state, action: PayloadAction<GameConfig>) => {
+    },    updateConfig: (state, action: PayloadAction<GameConfig>) => {
       state.config = { ...action.payload, coinSize: 75, numOfStreaksToWin: 1 };
     },
   },
