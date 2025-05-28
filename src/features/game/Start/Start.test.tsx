@@ -40,6 +40,6 @@ describe('Start Component', () => {
     fireEvent.change(firstPlayerInput, { target: { value: testName } });
     
     const state = store.getState();
-    expect(state.game.playerStates[1].name).toBe(testName);
+    expect(state.game.playerStates[0].name).toBe(testName);
   });
 });

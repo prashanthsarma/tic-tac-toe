@@ -23,7 +23,7 @@ const initBoardState = () => {
   for (let i = 0; i < BoardRows; i++) {
     initial[i] = [];
     for (let j = 0; j < BoardColumns; j++) {
-      initial[i][j] = { player: 0, isWinCoin: false }; // blank coin
+      initial[i][j] = { player: -1, isWinCoin: false }; // blank coin, -1 means empty
     }
   }
   return initial;
@@ -31,8 +31,8 @@ const initBoardState = () => {
 
 const initPlayerState = () => {
   const initial: PlayerState[] = [];
-
-  for (let i = 0; i <= MaxPlayers; i++) {
+  // Use 0-based indexing for players
+  for (let i = 0; i < MaxPlayers; i++) {
     initial.push({ streaks: 0, wins: 0, name: '', isRoundWin: false })
   }
   return initial;
@@ -44,7 +44,7 @@ export const initialState: GameState = {
   playerStates: initPlayerState(),
   gameStatus: GameStatus.NotStarted,
   roundStatus: RoundStatus.Continue,
-  currentPlayer: 1,
+  currentPlayer: 0, // Start with player 0
   moveCount: 0,
 };
 
@@ -68,7 +68,7 @@ export const gameSlice = createSlice({
     },
     nextRound: (state) => {
       if (state.gameStatus === GameStatus.InProgress) {
-        state.currentPlayer = (state.currentPlayer % MaxPlayers) + 1;
+        state.currentPlayer = (state.currentPlayer + 1) % MaxPlayers;
         state.playerStates.forEach(p => p.isRoundWin = false);
         state.boardState = initBoardState();
         state.roundStatus = RoundStatus.Continue;
@@ -85,7 +85,7 @@ export const gameSlice = createSlice({
         });
         state.roundStatus = RoundStatus.Continue;
         state.gameStatus = GameStatus.NotStarted;
-        state.currentPlayer = 1;
+        state.currentPlayer = 0;
         state.moveCount = 0;
       }
     },

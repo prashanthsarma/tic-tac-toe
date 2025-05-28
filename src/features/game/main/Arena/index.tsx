@@ -53,10 +53,10 @@ export const Arena = () => {
 
   const oddPlayers = [];
   const evenPlayers = [];
-  for (let i = 1; i <= MaxPlayers; i = i + 2) {
+  for (let i = 0; i < MaxPlayers; i = i + 2) {
     oddPlayers.push(<Player key={`Player${i}`} player={i} />)
   }
-  for (let i = 2; i <= MaxPlayers; i = i + 2) {
+  for (let i = 1; i < MaxPlayers; i = i + 2) {
     evenPlayers.push(<Player key={`Player${i}`} player={i} />)
   }
 

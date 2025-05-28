@@ -62,7 +62,7 @@ export const updateMoveInGame = (state: GameState, move: IMovePosition) => {
     state.gameStatus = gameStatus
     if(roundStatus === RoundStatus.Continue) {
         // Dont modify current player if won or draw
-        state.currentPlayer = (state.currentPlayer % MaxPlayers) + 1;
+        state.currentPlayer = (state.currentPlayer + 1) % MaxPlayers;
     }
     
     return state;

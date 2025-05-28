@@ -19,7 +19,7 @@ export const Start: React.FC = () => {
   }
 
   const playerDetails = []
-  for (let i = 1; i <= MaxPlayers; i++) {
+  for (let i = 0; i < MaxPlayers; i++) {
     playerDetails.push(<PlayerDetailInput player={i} key={i} />)
   }
 

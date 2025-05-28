@@ -12,7 +12,7 @@ export const PlayerDetailInput: React.FC<IPlayerDetailInput> = (props) => {
 
   return (
     <div data-testid="player-detail" className={styles.control}>
-      <label>{`PLAYER ${props.player}`}</label>
+      <label>{`PLAYER ${props.player + 1}`}</label>
       <input type="text"
         data-testid="player-detail-name"
         name="name"

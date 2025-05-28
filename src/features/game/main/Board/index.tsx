@@ -30,7 +30,7 @@ export const Board: React.FC = () => {
         {row.map((c, j) => (
           <React.Fragment key={`${i},${j}`}>
             {
-              c.player > 0
+              c.player >= 0
                 ?
                 <div
                   key={`${i},${j}`}
