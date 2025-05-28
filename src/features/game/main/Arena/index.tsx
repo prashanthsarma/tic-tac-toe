@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectRoundStatus, selectCurrentPlayer, nextRound, selectGameConfig } from '../../gameSlice';
 import { Board } from '../Board';
 import { CentralPlaceholder } from '../../utils/CentralPlaceholder';
-import styles from './Arena.module.css';
 import { Player } from '../Player';
 import { CentrePageLayout } from '../../utils/CentrePageLayout';
 import { RoundStatus } from '../../interfaces';
@@ -69,7 +68,10 @@ export const Arena = () => {
 
   return (
     <CentrePageLayout isCustomCursor onClick={handleLayoutClick}>
-      <div ref={cursorRef} className={`${styles.cursor} ${showCursor ? '' : 'none'}`}>
+      <div 
+        ref={cursorRef} 
+        className={`w-5 h-5 absolute z-10 pointer-events-none ${showCursor ? '' : 'hidden'} [&_svg]:stroke-white [&_svg]:fill-white [&_.cursor]:fill-white [&_.cursor]:stroke-white`}
+      >
         <PlayerCoin player={player} />
       </div>
       <div>

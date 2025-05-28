@@ -9,7 +9,6 @@ import {
 import { Coin } from '../Coin';
 import { CoinState, RoundStatus } from '../../interfaces';
 import { Lines } from './Lines';
-import styles from './Board.module.css';
 
 export const Board: React.FC = () => {
   const boardState = useSelector(selectBoardState);
@@ -27,7 +26,7 @@ export const Board: React.FC = () => {
     const cellStyle: CSSProperties = { width: `${config.coinSize}px`, height: `${config.coinSize}px` }
 
     return (
-      <div key={`row${i}`} className={styles.row}>
+      <div key={`row${i}`} className="flex flex-row">
         {row.map((c, j) => (
           <React.Fragment key={`${i},${j}`}>
             {
@@ -36,7 +35,7 @@ export const Board: React.FC = () => {
                 <div
                   key={`${i},${j}`}
                   style={cellStyle}
-                  className={styles.coinContainer}
+                  className="flex justify-center items-center"
                 >
                   <Coin i={i} j={j} player={c.player} isWin={c.isWinCoin} />
                 </div>
@@ -44,7 +43,7 @@ export const Board: React.FC = () => {
                 <div
                   key={`${i},${j}`}
                   style={cellStyle}
-                  className={styles.coinContainer}
+                  className="flex justify-center items-center"
                   onClick={() => handleCellClick(i, j)}
                 >
                 </div>
@@ -58,10 +57,10 @@ export const Board: React.FC = () => {
   const rows = boardState.map((row, i) => getRow(row, i));
 
   return (
-    <div className={styles.outerborder} onClick={(e) => {
+    <div onClick={(e) => {
       e.stopPropagation();
     }}>
-      <div className={styles.gameTable} onClick={(e) => {
+      <div onClick={(e) => {
         e.stopPropagation();
       }}>
         {rows}
