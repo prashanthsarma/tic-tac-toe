@@ -3,6 +3,7 @@ import { RootState } from '../../app/store';
 import { defaultConfig } from './config';
 import { IMovePosition, CoinState, RoundStatus, GameState, PlayerState, GameStatus, GameConfig } from './interfaces';
 import { updateMoveInGame } from './gameService';
+import { findBestMove } from './aiService';
 
 // interface IMakeMovePayload {
 //   move: IMovePosition;
@@ -60,6 +61,14 @@ export const gameSlice = createSlice({
     makeMove: (state, action: PayloadAction<{ move: IMovePosition }>) => {
       const { move } = action.payload;
       state = updateMoveInGame(state, move);
+
+      // If it's player 2's turn after the human move and the game is still in progress
+      if (state.currentPlayer === 1 && state.gameStatus === GameStatus.InProgress && state.roundStatus === RoundStatus.Continue) {
+        // Get AI move
+        const aiMove = findBestMove(state.boardState, state.config, 1);
+        // Make AI move
+        state = updateMoveInGame(state, aiMove);
+      }
     },
     updatePlayer: (state, action: PayloadAction<IUpdatePlayerPayload>) => {
       const { player, property, value } = action.payload;
@@ -78,6 +87,12 @@ export const gameSlice = createSlice({
         state.boardState = initBoardState(state.config);
         state.roundStatus = RoundStatus.Continue;
         state.moveCount = 0;
+
+        // If AI starts the next round
+        if (state.currentPlayer === 1) {
+          const aiMove = findBestMove(state.boardState, state.config, 1);
+          state = updateMoveInGame(state, aiMove);
+        }
       }
     },
     nextGame: (state) => {
