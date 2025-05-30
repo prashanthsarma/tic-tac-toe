@@ -1,8 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectGameConfig } from '../../../gameSlice';
-import styles from './Lines.module.css';
-
 
 export const Lines: React.FC = () => {
   const config = useSelector(selectGameConfig);
@@ -13,7 +11,14 @@ export const Lines: React.FC = () => {
     const width = config.coinSize * config.boardColumns;
     lines.push(
       <svg key={`rowLine${i}`} viewBox={`0 0 ${width} 2`} style={{ top: `${i * config.coinSize}px`, position: "absolute", left: "0px" }}>
-        <line x1="0" y1="0" x2={`${width}`} y2="0" className={styles.dotted} stroke="white" />
+        <line 
+          x1="0" 
+          y1="0" 
+          x2={`${width}`} 
+          y2="0" 
+          className="[stroke-dasharray:10,14] [stroke-linecap:butt] [stroke-width:1] stroke-[#f5f5f5]" 
+          stroke="white" 
+        />
       </svg>
     );
   }
@@ -23,7 +28,14 @@ export const Lines: React.FC = () => {
     const height = config.coinSize * config.boardRows;
     lines.push(
       <svg key={`colLine${i}`} viewBox={`0 0 2 ${height}`} style={{ left: `${i * config.coinSize}px`, position: "absolute", top: "0px", height }}>
-        <line x1="0" y1="0" x2="0" y2={`${height}`} className={styles.dotted} stroke="white" />
+        <line 
+          x1="0" 
+          y1="0" 
+          x2="0" 
+          y2={`${height}`} 
+          className="[stroke-dasharray:10,14] [stroke-linecap:butt] [stroke-width:1] stroke-[#f5f5f5]" 
+          stroke="white" 
+        />
       </svg>
     );
   }

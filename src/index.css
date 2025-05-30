@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); 
 @import "tailwindcss";
+
 .App {
   text-align: center;
 }
@@ -15,7 +16,6 @@
 --primary-bg-43: #0B233F6E;
 }
 
-
 body {
   background: var(--primary-bg);
   color: var(--primary-fg);
@@ -24,80 +24,4 @@ body {
 
 .none{
   display: none;
-}
-
-@keyframes strokeWin {
-  0% { stroke: var(--primary-fg); }
-  100% { stroke: var(--secondary-fg); }
-}
-
-@keyframes pathWin {
-  0% { fill: var(--primary-fg); }
-  100% { fill: var(--secondary-fg); }
-}
-
-@keyframes winEllipse {
-  0% { 
-    fill: var(--secondary-bg);
-    opacity: 0.3;
-  }
-  50% {
-    fill: var(--secondary-fg);
-    opacity: 1;
-  }
-  100% {
-    fill: var(--primary-fg);
-    opacity: 1;
-  }
-}
-
-@keyframes winEllipseSmall {
-  0% { 
-    fill: var(--secondary-bg);
-  }
-  100% {
-    fill: var(--secondary-fg);
-  }
-}
-
-@keyframes winner {
-  0% { color: var(--primary-fg); }
-  100% { color: var(--secondary-fg); }
-}
-
-.animate-strokeWin {
-  animation: strokeWin 0.8s ease-in-out alternate 4;
-}
-
-.animate-pathWin {
-  animation: pathWin 0.8s ease-in-out alternate 4;
-}
-
-.animate-winEllipse {
-  animation: winEllipse 0.8s ease-in-out alternate 4;
-  transform-origin: center;
-}
-
-.animate-winEllipseSmall {
-  animation: winEllipseSmall 0.8s ease-in-out alternate 4;
-}
-
-.animate-winner {
-  animation: winner 0.3s alternate-reverse infinite;
-}
-
-@layer base {
-  body {
-    @apply antialiased text-gray-900;
-  }
-}
-
-@layer components {
-  .btn {
-    @apply px-4 py-2 rounded transition-colors duration-200;
-  }
-  
-  .btn-primary {
-    @apply bg-red-500 text-white hover:bg-red-600;
-  }
 }

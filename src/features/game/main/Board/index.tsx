@@ -37,7 +37,7 @@ export const Board: React.FC = () => {
                   style={cellStyle}
                   className="flex justify-center items-center"
                 >
-                  <Coin i={i} j={j} player={c.player} isWin={c.isWinCoin} />
+                  <Coin player={c.player} isWin={c.isWinCoin} />
                 </div>
                 :
                 <div

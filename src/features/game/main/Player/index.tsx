@@ -19,8 +19,7 @@ export const Player: FC<IPlayerProps> = (props) => {
   const roundWins = []
   for (let i = 1; i <= config.maxWins; i++) {
     roundWins.push(      
-    <svg key={i} viewBox={`0 0 10 10`} className="w-[10px] h-[10px] mr-[10px] stroke-0 overflow-visible">
-        <ellipse 
+    <svg key={i} viewBox={`0 0 10 10`} className="w-[10px] h-[10px] mr-[10px] stroke-0 overflow-visible">        <ellipse 
           className={i <= p.wins ? 'animate-winEllipse' : 'fill-[var(--secondary-bg)]'}
           cx="5" cy="5" rx="5" ry="5" 
           style={{transformOrigin: 'center'}}
